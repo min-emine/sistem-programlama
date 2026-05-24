@@ -37,7 +37,7 @@ void handle_pack(int argc, char *argv[]) {
                 file_start_index = i + 2; 
                 break;
             } else {
-                printf("Hata: -o parametresinden sonra arşiv adı belirtilmedi!\n");
+                printf("Hata: -o parametresinden sonra arşiv adi belirtilmedi!\n");
                 exit(0);
             }
         }
@@ -50,11 +50,11 @@ void handle_pack(int argc, char *argv[]) {
 
     int file_count = argc - file_start_index;
     if (file_count <= 0) {
-        printf("Hata: Arşivlenecek giriş dosyası belirtilmedi!\n");
+        printf("Hata: Arsivlenecek giris dosyasi belirtilmedi!\n");
         exit(0);
     }
     if (file_count > MAX_FILES) {
-        printf("Hata: Giriş dosyası sayısı en fazla %d olabilir!\n", MAX_FILES);
+        printf("Hata: Giris dosyasi sayisi en fazla %d olabilir!\n", MAX_FILES);
         exit(0);
     }
 
@@ -67,7 +67,7 @@ void handle_pack(int argc, char *argv[]) {
 
         // Dosya varlık ve boyut kontrolü
         if (stat(filename, &st) != 0) {
-            printf("%s giriş dosyasının formatı uyumsuzdur!\n", filename);
+            printf("%s giris dosyasinin formati uyumsuzdur!\n", filename);
             exit(0);
         }
 
@@ -75,13 +75,13 @@ void handle_pack(int argc, char *argv[]) {
 
         // Format/ASCII Kontrolü
         if (!is_file_ascii(filename)) {
-            printf("%s giriş dosyasının formatı uyumsuzdur!\n", filename);
+            printf("%s giris dosyasinin formati uyumsuzdur!\n", filename);
             exit(0);
         }
     }
 
     if (total_size > MAX_TOTAL_SIZE) {
-        printf("Hata: Giriş dosyalarının toplam boyutu 200 MB'ı geçemez!\n");
+        printf("Hata: Giris dosyalarinin toplam boyutu 200 MB'i gecemez!\n");
         exit(0);
     }
 
@@ -108,7 +108,7 @@ void handle_pack(int argc, char *argv[]) {
     // 3. AŞAMA: Arşive Yazma
     FILE *out = fopen(output_filename, "w");
     if (!out) {
-        printf("Hata: Çıktı dosyası oluşturulamadı!\n");
+        printf("Hata: cikti dosyasi olusturulamadi!\n");
         free(meta_buffer);
         exit(0);
     }
@@ -132,4 +132,5 @@ void handle_pack(int argc, char *argv[]) {
     }
 
     fclose(out);
+    printf("Dosyalar birlestirildi.\n");
 }

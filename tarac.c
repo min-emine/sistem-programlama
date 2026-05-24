@@ -148,6 +148,25 @@ void handle_unpack(int argc, char *argv[]) {
         #endif
     }
 
+    // 6. AŞAMA: Başarı Mesajını Ekrana Yazdırma
+    if (target_dir != NULL) {
+        printf("%s dizininde ", target_dir);
+    } else {
+        printf("Geçerli dizinde ");
+    }
+
+    // Dosya isimlerini aralarına virgül ve "ve" koyarak formatlı yazdıran algoritma
+    for (int i = 0; i < extracted_file_count; i++) {
+        printf("%s", filenames[i]);
+        
+        if (i < extracted_file_count - 2) {
+            printf(", ");
+        } else if (i == extracted_file_count - 2) {
+            printf(" ve ");
+        }
+    }
+    printf(" dosyalari acildi.\n");
+
     // Belleği ve açık dosyayı temizle
     free(meta_buffer);
     fclose(arch);
